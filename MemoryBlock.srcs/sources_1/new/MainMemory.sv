@@ -1,3 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project: Memory Block
+// Author: Hunter Savage-Pierce
+// Date: October 23, 2024
+// Version: 1.0
+///////////////////////////////////////////////////////////////////////////////
+// Description:
+// Design File for a Custom Memory Block
+//
+// References:
+// - Mark W. Welker EE4321 Memory Block Supplied Code Texas State University
+// - ChatGPT 4o
+///////////////////////////////////////////////////////////////////////////////
 module MainMemory(Clk, DataOut, DataIn, address, nRead, nWrite, nReset);
     input logic nRead, nWrite, nReset, Clk;
     input logic [15:0] address;
