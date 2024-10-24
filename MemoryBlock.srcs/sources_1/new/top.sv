@@ -19,11 +19,6 @@ MainMemory  U2(Clk,MemDataOut,TestDataOut, address, nRead,nWrite, nReset);
 TestMem  UTest(Clk,nRead,nWrite,nReset,address,TestDataOut, InstructDataOut, MemDataOut);
 
 
-initial begin //. setup to allow waveforms for edaplayground
-   $dumpfile("dump.vcd");
-   $dumpvars(1);
-end
-
 endmodule
 
 ///////////////////////////////

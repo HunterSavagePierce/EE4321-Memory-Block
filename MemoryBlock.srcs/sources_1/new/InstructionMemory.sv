@@ -20,11 +20,26 @@ module InstructionMemory(Clk, Dataout, address, nRead, nReset);
 
     // Load instructions into memory when nReset is low (active reset)
     always_ff @(posedge Clk or negedge nReset) begin
-        
+        if (!nReset) begin
+            memory[0] <= Instruct1;
+            memory[1] <= Instruct2;
+            memory[2] <= Instruct3;
+            memory[3] <= Instruct4;
+            memory[4] <= Instruct5;
+            memory[5] <= Instruct6;
+            memory[6] <= Instruct7;
+            memory[7] <= Instruct8;
+            memory[8] <= Instruct9;
+            memory[9] <= Instruct10;
+        end
     end
 
     // Output data on read
     always_comb begin
-        
+        if (!nRead && (address[15:12] == 4'b0001)) begin
+            Dataout = memory[address[3:0]];
+        end else begin
+            Dataout = 256'bz; // High impedance if not being read
+        end
     end
 endmodule

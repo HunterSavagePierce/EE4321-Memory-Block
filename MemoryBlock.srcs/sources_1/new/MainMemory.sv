@@ -9,11 +9,22 @@ module MainMemory(Clk, DataOut, DataIn, address, nRead, nWrite, nReset);
 
     // Initialize memory on reset
     always_ff @(posedge Clk or negedge nReset) begin
-        
+        if (!nReset) begin
+            integer i;
+            for (i = 0; i < 16; i = i + 1) begin
+                memory[i] <= 256'b0;
+            end
+        end else if (!nWrite && (address[15:12] == 4'b0000)) begin
+            memory[address[3:0]] <= DataIn; // Write Data to Memory
+        end
     end
 
     // Read data from memory
     always_comb begin
-        
+        if (!nRead && (address[15:12] == 4'b0000)) begin
+            DataOut = memory[address[3:0]];
+        end else begin
+            DataOut = 256'bz; // High impedance if not being read
+        end
     end
 endmodule
